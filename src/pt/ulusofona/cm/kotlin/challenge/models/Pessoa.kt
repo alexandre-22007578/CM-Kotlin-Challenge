@@ -3,10 +3,13 @@ package pt.ulusofona.cm.kotlin.challenge.models
 import src.pt.ulusofona.cm.kotlin.challenge.Posicao
 import src.pt.ulusofona.cm.kotlin.challenge.models.Veiculo
 import java.util.*
+import kotlin.collections.ArrayList
 
-class Pessoa (val nome :String, var veiculos: MutableList<Veiculo>, val dataDeNascimento:Date, var posicao: Posicao) {
+class Pessoa (val nome :String, val dataDeNascimento:Date) {
 
     var carta: Carta? = null
+    var veiculos: ArrayList<Veiculo> = ArrayList()
+    var posicao:Posicao = Posicao(0,0)
 
     fun Pessoa(nome:String, dataDeNascimento: Date){
 
@@ -22,7 +25,7 @@ class Pessoa (val nome :String, var veiculos: MutableList<Veiculo>, val dataDeNa
                 return  i
             }
         }
-        return Veiculo("erro", Posicao(4,5), Date(2000))
+        return Veiculo("erro")
     }
 
     fun venderVeiculo(identificador: String, comprador:Pessoa){
