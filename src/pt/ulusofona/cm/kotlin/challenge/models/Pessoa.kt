@@ -1,14 +1,18 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
+val dataFormatada = SimpleDateFormat("dd-MM-yyyy", Locale.GERMANY)
 
 class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
 
     var carta: Carta? = null
     var veiculos: ArrayList<Veiculo> = ArrayList()
     var posicao: Posicao = Posicao(0,0)
+
 
 
     fun comprarVeiculo(veiculo: Veiculo){
@@ -59,6 +63,6 @@ class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
     }
 
     override fun toString(): String {
-        return "Pessoa | $nome | $dataDeNascimento | $posicao"
+        return "Pessoa | $nome | ${dataFormatada.format(dataDeNascimento)} | $posicao"
     }
 }
