@@ -1,8 +1,27 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-class Carro (val indentificador:String, val motor: Motor){
+import pt.ulusofona.cm.kotlin.challenge.interfaces.Ligavel
 
-    fun Carro(indentificador:String, motor: Motor){
-
+class Carro ( indentificador:String, val motor: Motor):Veiculo(indentificador),Ligavel{
+    override fun requerCarta(): Boolean {
+        return true
     }
+
+    override fun moverPara(x: Int, y: Int) {
+        posicao.alterarPosicaoPara(x,y)
+    }
+
+    override fun ligar() {
+        motor.ligar()
+    }
+
+    override fun desligar() {
+        motor.desligar()
+    }
+
+    override fun estaligado(): Boolean {
+        return motor.estaligado()
+    }
+
+
 }

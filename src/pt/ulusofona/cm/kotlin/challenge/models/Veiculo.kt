@@ -1,20 +1,19 @@
-package src.pt.ulusofona.cm.kotlin.challenge.models
+package pt.ulusofona.cm.kotlin.challenge.models
 
-import src.pt.ulusofona.cm.kotlin.challenge.Posicao
+import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.time.Instant
 import java.util.Date
 
 
-class Veiculo(val identificador: String) {
+abstract class Veiculo(val identificador: String):Movimentavel {
 
     val posicao: Posicao = Posicao(0,0)
     val dataDeAquisicao: Date = Date.from(Instant.now())
 
-    fun Veiculo(identificador: String) {
+    abstract fun requerCarta():Boolean
 
-    }
-    fun requerCarta():Boolean{
-        return  true
-    }
+
+
+
 
 }

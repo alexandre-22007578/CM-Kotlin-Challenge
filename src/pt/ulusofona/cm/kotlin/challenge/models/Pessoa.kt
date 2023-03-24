@@ -1,31 +1,27 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-import src.pt.ulusofona.cm.kotlin.challenge.Posicao
-import src.pt.ulusofona.cm.kotlin.challenge.models.Veiculo
+import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Pessoa (val nome :String, val dataDeNascimento:Date) {
+class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
 
     var carta: Carta? = null
     var veiculos: ArrayList<Veiculo> = ArrayList()
-    var posicao:Posicao = Posicao(0,0)
+    var posicao: Posicao = Posicao(0,0)
 
-    fun Pessoa(nome:String, dataDeNascimento: Date){
-
-    }
 
     fun comprarVeiculo(veiculo: Veiculo){
         veiculos.add(veiculo)
     }
 
-    fun pesquisarVeiculo(identificador:String):Veiculo{
+    fun pesquisarVeiculo(identificador:String): Veiculo {
         for (i in veiculos){
             if (i.identificador == identificador){
                 return  i
             }
         }
-        return Veiculo("erro")
+        return Bicicleta("ola")
     }
 
     fun venderVeiculo(identificador: String, comprador:Pessoa){
@@ -56,5 +52,9 @@ class Pessoa (val nome :String, val dataDeNascimento:Date) {
     fun tirarCarta(){
 
         carta= Carta()
+    }
+
+    override fun moverPara(x: Int, y: Int) {
+        posicao.alterarPosicaoPara(x, y)
     }
 }
