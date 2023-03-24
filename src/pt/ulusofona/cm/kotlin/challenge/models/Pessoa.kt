@@ -45,7 +45,7 @@ class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
 
     fun temCarta():Boolean{
 
-        return (carta==null)
+        return (carta!=null)
 
     }
 
@@ -56,5 +56,9 @@ class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
 
     override fun moverPara(x: Int, y: Int) {
         posicao.alterarPosicaoPara(x, y)
+    }
+
+    override fun toString(): String {
+        return "Pessoa | $nome | $dataDeNascimento | $posicao"
     }
 }
