@@ -9,7 +9,7 @@ import java.util.*
 abstract class Veiculo(val identificador: String):Movimentavel {
 
     val posicao: Posicao = Posicao(0,0)
-    val dataDeAquisicao: Date = Date.from(Instant.now())
+    var dataDeAquisicao: Date = Date.from(Instant.now())
 
     abstract fun requerCarta():Boolean
 

@@ -8,7 +8,17 @@ class Carro ( indentificador:String, val motor: Motor):Veiculo(indentificador),L
     }
 
     override fun moverPara(x: Int, y: Int) {
-        posicao.alterarPosicaoPara(x,y)
+
+        if (estaLigado()){
+            posicao.alterarPosicaoPara(x,y)
+            desligar()
+        }else{
+            ligar()
+            posicao.alterarPosicaoPara(x,y)
+            desligar()
+        }
+
+
     }
 
     override fun ligar() {
