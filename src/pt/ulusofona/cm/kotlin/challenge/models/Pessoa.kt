@@ -85,7 +85,7 @@ class Pessoa(val nome: String, val dataDeNascimento: Date) : Movimentavel {
 
         val idadeMS: Long = dataHoje.time - dataDeNascimento.time
 
-        val dezoitoAnosEmMilisegundos: Double = 5.68024668 * 1011
+        val dezoitoAnosEmMilisegundos: Long = 568036800000
 
         return dezoitoAnosEmMilisegundos <= idadeMS
 
