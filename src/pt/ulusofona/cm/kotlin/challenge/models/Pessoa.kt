@@ -1,7 +1,10 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
+import pt.ulusofona.cm.kotlin.challenge.exceptions.PessoaSemCartaException
+import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoNaoEncontradoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.text.SimpleDateFormat
+import java.time.Instant
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -25,7 +28,7 @@ class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
                 return  i
             }
         }
-        return Bicicleta("ola")
+      throw VeiculoNaoEncontradoException("Veiculo que pretende encontrar não pretence a esta pessoa com o nome $nome")
     }
 
     fun venderVeiculo(identificador: String, comprador:Pessoa){
@@ -39,12 +42,18 @@ class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
     }
 
     fun moverVeiculoPara(identificador: String, x:Int,y:Int){
-        for (i in veiculos){
-            if (i.identificador == identificador){
-                i.posicao.alterarPosicaoPara(x,y)
-                return
-            }
+
+
+        val veiculo = pesquisarVeiculo(identificador)
+
+        if (veiculo.requerCarta() && !temCarta()){
+            throw PessoaSemCartaException(nome)
         }
+
+
+        veiculo.posicao.alterarPosicaoPara(x,y)
+        this.posicao.alterarPosicaoPara(x,y)
+
     }
 
     fun temCarta():Boolean{
@@ -55,6 +64,8 @@ class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
 
     fun tirarCarta(){
 
+
+
         carta= Carta()
     }
 
@@ -64,5 +75,19 @@ class Pessoa (val nome :String, val dataDeNascimento:Date):Movimentavel {
 
     override fun toString(): String {
         return "Pessoa | $nome | ${dataFormatada.format(dataDeNascimento)} | $posicao"
+    }
+
+
+    fun maiorDeIdade():Boolean{
+
+        val dataHoje:Date = Date.from(Instant.now())
+
+        val idadeMS:Long = dataHoje.time-dataDeNascimento.time
+
+        val dezoitoAnosEmMilisegundos:Double = 5.68024668 * 1011
+
+        return dezoitoAnosEmMilisegundos <= idadeMS
+
+
     }
 }
