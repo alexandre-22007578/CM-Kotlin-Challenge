@@ -19,8 +19,8 @@ class Carro ( indentificador:String, val motor: Motor):Veiculo(indentificador),L
         motor.desligar()
     }
 
-    override fun estaligado(): Boolean {
-        return motor.estaligado()
+    override fun estaLigado(): Boolean {
+        return motor.estaLigado()
     }
 
 

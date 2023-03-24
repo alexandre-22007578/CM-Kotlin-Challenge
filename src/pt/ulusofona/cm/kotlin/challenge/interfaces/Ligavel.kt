@@ -6,5 +6,5 @@ interface Ligavel {
 
     fun desligar()
 
-    fun estaligado():Boolean
+    fun estaLigado():Boolean
 }
