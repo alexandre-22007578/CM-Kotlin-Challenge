@@ -1,6 +1,10 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-class Pessoa (val nome :String, var veiculos: MutableList<Veicu lo>, val dataDeNascimento:Date, var posicao: Posicao) {
+import src.pt.ulusofona.cm.kotlin.challenge.Posicao
+import src.pt.ulusofona.cm.kotlin.challenge.models.Veiculo
+import java.util.*
+
+class Pessoa (val nome :String, var veiculos: MutableList<Veiculo>, val dataDeNascimento:Date, var posicao: Posicao) {
 
     var carta: Carta? = null
 
